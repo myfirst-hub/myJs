@@ -7,6 +7,7 @@ function after(time, say){ // 高阶函数
   }
 }
 
+
 let newSay = after(3, function say(){ // 保存一个变量，到after的内部
   console.log('say');
 })
