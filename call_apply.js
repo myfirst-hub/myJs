@@ -3,6 +3,7 @@ let obj = {
 };
 
 function addAge(age, long) {
+  console.log('this............', this)
   this.age = age;
   this.long = long;
   return this;
