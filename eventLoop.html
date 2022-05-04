@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <script>
+
+    function getAwait() {
+      return setTimeout(() => {
+        console.log('getAwait.................')
+      }, 0);
+    }
+
+    async function getAsync() {
+      console.log('1111')
+      await getAwait()
+      console.log('getAsync.................')
+    }
+
+    setTimeout(function() {
+      console.log('timer1')
+      getAsync()
+    }, 1)
+
+    requestAnimationFrame(function(){
+        console.log('requestAnimationFrame')
+    })
+
+    function getPromise() {
+      return new Promise((resolve) => {
+        console.log('resolve..............getPromise')
+        resolve('getPromise')
+      }).then((e) => {
+        console.log('e........getPromise..........', e)
+      })
+    }
+
+    setTimeout(function() {
+      console.log('timer2')
+      setTimeout(() => {
+        console.log('timer2.................000')
+      }, 0)
+      return new Promise((resolve) => {
+        console.log('val......aaa............')
+        resolve('aaa')
+      }).then((val) => {
+        console.log('val..................', val)
+        getPromise()
+      })
+    }, 0)
+
+    new Promise(function(resolve) {
+        console.log('promise 1', resolve)
+        resolve(4)
+        console.log('promise 2')
+    }).then(function(resolve) {
+        console.log('promise then', resolve)
+        return new Promise((res) => {
+          console.log('promise 3')
+          setTimeout(() => {
+            res(5)
+          }, 0);
+        })
+    }).then((e) => {
+      console.log('promise then111', e)
+      return new Promise((res) => {
+          console.log('promise 6')
+          res(6)
+        })
+      return 33
+    }).then((e) => {
+      console.log('promise then2222', e)
+    })
+
+    console.log('end')
+
+
+    // https://www.jianshu.com/p/72d343e3495b
+    // https://blog.csdn.net/chenrongwei92/article/details/120877134
+    // jb51.net/article/213972.htm
+    // https://blog.csdn.net/jian_zi/article/details/121749619
+  </script>
+</body>
+</html>

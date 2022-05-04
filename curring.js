@@ -40,6 +40,7 @@ let util = {};
 
 var uncurrying = function (fn) {
   return function () {
+    console.log('arguments..................', arguments)
     return Function.prototype.call.apply(fn, arguments);
   };
 };

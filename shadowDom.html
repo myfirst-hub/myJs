@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <search-box placeholder="请输入" id="searchBox" />
+  <script>
+    // 实现web组件
+    class SearchBox extends HTMLElement {
+      constructor() {
+        super()
+        this.attachShadow({ mode: 'open' })
+        this.shadowRoot.append(SearchBox.template.content.cloneNode(true))
+
+        this.input = this.shadowRoot.querySelector("#input")
+        this.leftSlot = this.shadowRoot.querySelector('slot[name="left"]')
+        this.rightSlot = this.shadowRoot.querySelector('slot[name="right"]')
+
+        this.input.onfocus = () => {
+          this.setAttribute("focused", "")
+        }
+
+        this.input.onblur = () => {
+          // console.log('onblur...........')
+          this.removeAttribute("focused")
+        }
+
+        this.input.onchange = (event) => {
+          event.stopPropagation()
+          // console.log('event.....onchange...........', event)
+          if (this.disabled) {
+            return
+          }
+          this.dispatchEvent(new CustomEvent("change", {
+            detail: this.input.value
+          }))
+        }
+
+        this.leftSlot.onclick = (event) => {
+          event.stopPropagation()
+          if (this.disabled) {
+            return
+          }
+          this.dispatchEvent(new CustomEvent("search1", {
+            detail: this.input.value
+          }))
+        }
+
+        this.rightSlot.onclick = (event) => {
+          event.stopPropagation()
+          if (this.disabled) return
+          let e = new CustomEvent("clear", {cancelable: true})
+          this.dispatchEvent(e)
+          if (!e.defaultPrevented) {
+            this.input.value = ""
+          }
+        }
+      }
+      // 这个生命周期方法与下面代码的静态属性observedAttributes相互配合，实现回调
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "disabled") {
+          this.input.disabled = newValue !== null
+        } else if (name === "placeholder") {
+          this.input.placeholder = newValue
+        } else if (name === "size") {
+          this.input.size = newValue
+        } else if (name === "value") {
+          this.input.value = newValue
+        }
+      }
+
+      get placeholder() {return this.getAttribute("placeholder")}
+      get size() {return this.getAttribute("size")}
+      get value() {return this.getAttribute("value")}
+      get disabled() {return this.hasAttribute("disabled")}
+      get hidden() {return this.hasAttribute("hidden")}
+
+      set placeholder(value) {this.setAttribute("placeholder", value)}
+      set size(value) {this.setAttribute("placeholder", value)}
+      set value(text) {this.setAttribute("placeholder", text)}
+      set disabled(value) {
+        if (value) {
+          this.setAttribute("disabled", "")
+        } else {
+          this.removeAttribute("disabled")
+        }
+      }
+      set hidden(value) {
+        if (value) {
+          this.setAttribute("hidden", "")
+        } else {
+          this.removeAttribute("hidden")
+        }
+      }
+
+      // 这个静态属性对attributeChangedCallback方法是必需的
+      static observedAttributes = ["disabled", "placeholder", "size", "value"]
+
+      static template = document.createElement("template")
+    }
+
+    SearchBox.template.innerHTML = `
+      <style>
+        input {
+          border-width: 0;
+          outline: none;
+          font: inherit;
+          background: inherit;
+        }
+        slot {
+          cursor: default;
+          user-select: none;
+        }
+      </style>
+      <div>
+        <slot name="left">
+          \u{1f50d}
+        </slot>
+        <input type="text" id="input" />
+        <slot name="right">
+          \u{2573}
+        </slot>
+      </div>
+    `
+
+    // 最后，我们调用customElements.define()将SearchBox元素注册为<search-box>标签的实现。自定义元素的标签名中必须包含一个连字符
+    customElements.define("search-box", SearchBox)
+    
+    // console.log('document.getElementById("searchBox")....................', document.getElementById("searchBox"))
+
+    document.getElementById("searchBox").addEventListener("search1", (e) => {
+      console.log('search1..................', e.target)
+      console.log('search1..................', e.currentTarget)
+    })
+    document.getElementById("searchBox").addEventListener("change", (e) => {
+      console.log('change..................', e.currentTarget)
+    })
+  </script>
+</body>
+</html>

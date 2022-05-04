@@ -30,10 +30,10 @@ class Promise {
     };
     try {
       // executor 执行的时候 需要传入两个参数，给用户来改变状态
-      executor(resolve, reject);
+      executor(this.resolve, this.reject);
     } catch (e) {
       // 表示当前有异常，那就使用这个异常作为promise失败的原因
-      reject(e);
+      this.reject(e);
     }
   }
   then(onFulfilled, onRejected) {

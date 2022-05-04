@@ -32,3 +32,12 @@ promise.then(
     console.log("fail................", fail);
   }
 );
+
+promise.then(
+  (success) => {
+    console.log("success............", success);
+  },
+  (fail) => {
+    console.log("fail................", fail);
+  }
+);

@@ -29,11 +29,12 @@ let promise = new Promise((resolve, reject) => {
 promise.then(
   (success) => {
     console.log("success............", success);
+    return 1
   },
   (fail) => {
     console.log("fail................", fail);
   }
-);
+)
 promise.then(
   (success) => {
     console.log("success............", success);
