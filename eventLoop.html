@@ -10,6 +10,7 @@
   <script>
 
     function getAwait() {
+      console.log('getAwait.............0')
       return setTimeout(() => {
         console.log('getAwait.................')
       }, 0);
@@ -71,7 +72,7 @@
           console.log('promise 6')
           res(6)
         })
-      return 33
+      // return 33 // 直接return一个值，then()方法也可以拿到该值
     }).then((e) => {
       console.log('promise then2222', e)
     })

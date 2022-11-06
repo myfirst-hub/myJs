@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>闭包</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+  <!-- <script src='main.js'></script> -->
+</head>
+<body>
+  <script>
+    // var声明和函数声明混合重复声明导致的现象
+    // var的声明无效被忽略
+    // 函数声明优先于var声明
+    // console.log('0...........', foo)
+
+    // foo()
+
+    // var foo
+
+    // console.log('1...........', foo)
+
+    // function foo() {
+    // 	console.log('function foo')
+    // }
+
+    // var foo = function() {
+    //   console.log('express foo')
+    // }
+
+    // foo()
+
+    // if语句和for语句中var声明的作用域在{}的外部
+    // var bool = true
+
+    // if (bool) {
+    //   var a = 1
+    //   function b () {
+    //     console.log('b..........')
+    //   }
+    // }
+    // console.log('0.............', a)
+    // console.log('1.............', b())
+
+    // for(var i = 0; i < 3; i++){
+    //   console.log('i..........', i)
+    // }
+
+    // console.log('out i...........', i)
+
+    // 闭包是指有权访问另一个函数作用域中的变量的函数
+    // 闭包: 当函数可以记住并访问所在的词法作用域时，就产生了闭包
+    // bar()依然持有对该作用域的引用，而这个引用就叫做闭包
+    // function foo() {
+    //   var b = 2
+    //   function bar() {
+    //     console.log(b)
+    //   }
+    //   return bar
+    // }
+
+    // var baz = foo()
+    // baz()
+
+    // 另一种闭包写法
+    // function foo() {
+    //   var b = 2
+    //   function bar() {
+    //     console.log(b)
+    //   }
+    //   bar()
+    // }
+
+    // foo()
+
+    // IIFE（立即执行函数表达式）函数产生了闭包，但变量a,val未从闭包的作用域中获取，是通过词法作用域查找规则在该函数所在的全局作用域中拿到的
+    // var a = 2;
+    // var b = 1;
+    // (function IIFE(val) {
+    //   console.log('a............', a);
+    //   console.log('val............', val);
+    // })(b)
+
+    
+  </script>
+</body>
+</html>

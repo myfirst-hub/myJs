@@ -29,7 +29,9 @@ function *foo() {
 }
 
 function *bar() {
-  yield;
+  console.log(1)
+  const a = yield;
+  console.log('a............', a)
   yield 2;
   yield *foo();
   yield 5;
@@ -37,9 +39,9 @@ function *bar() {
 
 const it = bar();
 
-console.log(it.next().value)
-console.log(it.next().value)
-console.log(it.next().value)
-console.log(it.next().value)
-console.log(it.next().value)
+console.log(it.next())
+// console.log(it.next(3))
+// console.log(it.next().value)
+// console.log(it.next().value)
+// console.log(it.next().value)
 

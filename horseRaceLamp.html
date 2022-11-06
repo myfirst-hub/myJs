@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <style>
+    *{
+      padding: 0; 
+      margin: 0; 
+      box-sizing: border-box;
+    }
+    .wrap{ 
+      position: relative; 
+      width: 40%; 
+      height: 40px; 
+      margin:10% auto; 
+      background: #ddd; 
+      font-size: 0; 
+      overflow: hidden;
+    }
+    .wrap  .cont{
+      position: absolute; 
+      top: 0; 
+      left: 0;
+      /* 宽度 大于容器的两倍即可 */
+      width: 200%; 
+      -webkit-animation:15s move infinite linear;
+    }
+    .wrap .txt{ 
+      font-size: 18px; 
+      color: #fff;
+      display: inline-block; 
+      /* 宽度 等于容器的宽度 */
+      width: 50%; 
+      height: 30px; 
+      border-left:1px solid #fff; 
+      line-height: 30px; 
+      text-align: center; 
+      margin-top: 5px; 
+      /* background: #000; */
+    }
+    .wrap:hover .cont{ 
+      -webkit-animation-play-state:paused;
+    }
+
+    @-webkit-keyframes move{
+      /* 原理 left值的变化 移动一个容器的宽度 */
+      0%{
+        left: 100%;
+      }
+      100%{
+        left: -100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cont">
+      <!-- 2.文字如果超出了宽度自动向左滚动文字如果超出了宽度自动向左滚动2。 -->
+      <!-- <p class="txt">1.文字超长1。</p> -->
+      <p class="txt">2.文字如果超出了宽度自动向左滚动文字如果超出了宽度自动向左字如果超出了宽度自动向左滚动文字如果超出了宽度自动向左滚动2。</p>
+    </div>
+  </div>
+</body>
+</html>
