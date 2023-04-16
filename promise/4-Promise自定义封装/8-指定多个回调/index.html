@@ -10,10 +10,13 @@
     <script>
         //实例化对象
         let p = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // resolve('OK');
-                reject('No');
-            }, 1000);
+            // setTimeout(() => {
+            //   console.log('resolve............')
+            //     resolve('OK');
+            //     // reject('No');
+            // }, 1000);
+            console.log('resolve............')
+            resolve('OK');
         });
 
         p.then(value => {
@@ -22,11 +25,11 @@
             console.warn(reason);
         });
 
-        p.then(value => {
-            alert(value);
-        }, reason=>{
-            alert(reason);
-        });
+        // p.then(value => {
+        //     alert(value);
+        // }, reason=>{
+        //     alert(reason);
+        // });
 
         console.log(p);
 

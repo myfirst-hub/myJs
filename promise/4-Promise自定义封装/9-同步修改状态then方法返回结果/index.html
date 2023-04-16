@@ -14,10 +14,15 @@
         });
         //执行 then 方法
         const res = p.then(value => {
+          console.log('value............', value);
             //抛出异常
             throw "FAIL";
         }, reason=>{
             console.warn(reason);
+        }).then(value => {
+          console.log('value1...........', value);
+        }, reason => {
+          console.log('reason1.........', reason);
         });
         console.log(res);
     </script>

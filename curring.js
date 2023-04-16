@@ -52,6 +52,7 @@ $.push = function (obj) {
   pushUncurrying(this, obj);
 };
 $.push("first");
+console.log('$...............', $);
 console.log($.length); // 1
 console.log($[0]); // first
 console.log($.hasOwnProperty("length"));

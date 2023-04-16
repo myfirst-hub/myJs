@@ -19,7 +19,7 @@
         //调用
         const result = Promise.race([p1, p2, p3]);
 
-        console.log(result);
+        console.log(result.then((value) => console.log(value)));
     </script>
 </body>
 

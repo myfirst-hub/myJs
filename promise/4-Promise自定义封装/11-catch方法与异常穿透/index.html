@@ -9,21 +9,45 @@
 <body>
     <script>
         //实例化对象
+        // let p = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         reject('Error');
+        //         // resolve('OK');
+        //         // throw 'Error';
+        //     }, 1000);
+        // });
+
+        // //值传递
+        // p.then(() => {}, () => {
+        //   console.log('value...........', 111);
+        // })
+        // .then(value=>{
+        //     console.log('value1...........', value);
+        //     // throw 'Error';
+        // }).then(value => {
+        //     console.log(333);
+        // }).catch(reason => {
+        //     console.warn('reason1.........', reason);
+        // });
+
         let p = new Promise((resolve, reject) => {
             setTimeout(() => {
-                // reject('OK');
-                resolve('OK');
+                // resolve('OK');
+                // reject('Err');
+                // throw '失败啦!';
+                console.log('ok................');
             }, 1000);
         });
 
-        //值传递
-        p.then()
-        .then(value=>{
+        p.then(value => {
+            console.log('value...........', value);
+            throw '失败啦!';
+        }).then(value => {
             console.log(222);
         }).then(value => {
             console.log(333);
         }).catch(reason => {
-            console.warn(reason);
+            console.warn('reason.............', reason);
         });
 
 

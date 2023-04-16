@@ -19,9 +19,10 @@
         //执行 then 方法
         const res = p.then(value => {
             // return 'oh Yeah';
+            console.log('value..............', value);
             throw 'error';
         }, reason=>{
-            // console.warn(reason);
+            console.warn('reason..............', reason);
             throw 'error';
         });
 

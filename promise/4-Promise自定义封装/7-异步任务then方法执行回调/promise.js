@@ -29,8 +29,8 @@ function Promise(executor){
         //2. 设置对象结果值 (promiseResult)
         self.PromiseResult = data;
         //执行回调
-        if(self.callback.onResolved){
-            self.callback.onResolved(data);
+        if(self.callback.onRejected){
+            self.callback.onRejected(data);
         }
     }
     try{
@@ -46,6 +46,7 @@ function Promise(executor){
 Promise.prototype.then = function(onResolved, onRejected){
     //调用回调函数  PromiseState
     if(this.PromiseState === 'fulfilled'){
+      console.log('fulfilled.............sync')
         onResolved(this.PromiseResult);
     }
     if(this.PromiseState === 'rejected'){

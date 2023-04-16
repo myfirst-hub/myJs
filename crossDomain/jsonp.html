@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jsonp</title>
+</head>
+<body>
+  123
+</body>
+<script type="text/javascript">
+  console.log(123);
+  let script = document.createElement('script');
+
+  script.src = 'http://www.nealyang.cn/login?username=Nealyang&callback=callback';
+
+  document.body.appendChild(script);
+
+  function callback(res) {
+    console.log(res);
+  }
+</script>
+</html>
